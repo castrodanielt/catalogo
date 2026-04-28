@@ -2,11 +2,24 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
+h2{
+  width: 100%;
+  margin-top: 20px;
+}
+
 #catalogo{
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
 }
+
+.contenedor-categoria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
 
 .producto {
   flex: 1 1 45%;

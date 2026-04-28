@@ -5,28 +5,57 @@ fetch("data/products.json")
     .then(productos => {
 
     productosGlobal = productos;
-    renderProductos(productosGlobal);
+    renderProductosPorCategoria(productosGlobal);
 
 }).catch(error => console.error("Error al intentar cargar productos"),error);
 
-function renderProductos(productos){
+function renderProductosPorCategoria(productos){
 
     const catalogo = document.getElementById("catalogo");
     catalogo.innerHTML = "";
 
+    const productosAgrupados = {};
+
     productos.forEach(producto=>{
-        const contenedor = document.createElement("div");
-        contenedor.classList.add("producto");
+        const categoria = producto.categoria;
 
-        const img = document.createElement("img");
-        img.src = producto.imagen;
+        if(!productosAgrupados[categoria]){
+            productosAgrupados[categoria] = [];
+        }
 
-        const codigo = document.createElement("p");
-        codigo.textContent = "Codigo: " + producto.codigo;
-
-        contenedor.appendChild(img);
-        contenedor.appendChild(codigo);
-
-        catalogo.appendChild(contenedor);
+        productosAgrupados[categoria].push(producto);
     });
+
+    for(let categoria in productosAgrupados){
+
+        const tituloCategoria = document.createElement("h2");
+        tituloCategoria.textContent = categoria;
+        catalogo.appendChild(tituloCategoria);
+
+        const contenedor = document.createElement("div");
+        contenedor.classList.add("contenedor-categoria");
+
+        productosAgrupados[categoria].forEach(producto=>{
+            const card = document.createElement("div");
+            card.classList.add("producto");
+
+            const img = document.createElement("img");
+            img.src = producto.imagen;
+
+            const descripcion = document.createElement("p");
+            descripcion.textContent = producto.descripcion;
+
+            const marca = document.createElement("p");
+            marca.textContent = producto.marca;
+
+            card.appendChild(img);
+            card.appendChild(descripcion);
+            card.appendChild(marca);
+
+            contenedor.appendChild(card);
+        });
+        catalogo.appendChild(contenedor);
+    }
+
+    
 }
