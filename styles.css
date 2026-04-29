@@ -23,7 +23,7 @@ h2{
 
 .producto {
   flex: 1 1 45%;
-  max-width: 45%;
+  max-width: 40%;
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 8px;
