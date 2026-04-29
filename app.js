@@ -1,10 +1,12 @@
 let productosGlobal = [];
 
-fetch("data/products.json")
-    .then(response => response.json())
-    .then(productos => {
+fetch("https://docs.google.com/spreadsheets/d/1JEU4TSNFhUG16dwqjD-DBSSwYLXu432F1qBMXGKq0ZI/export?format=csv")
+    .then(response => response.text())
+    .then(text => {
+    
+    const datos = parseCSV(text);
 
-    productosGlobal = productos;
+    productosGlobal = datos;
     renderProductosPorCategoria(productosGlobal);
 
 }).catch(error => console.error("Error al intentar cargar productos"),error);
@@ -58,4 +60,20 @@ function renderProductosPorCategoria(productos){
     }
 
     
+}
+
+function parseCSV(texto){
+    const lineas = texto.split("\n").filter(line => line.trim() != "");
+    const encabezados = lineas[0].split(",");
+
+    return lineas.slice(1).map(linea =>{
+        const valores = linea.split(",");
+        const objeto = {};
+
+        encabezados.forEach((encabezado,index)=>{
+            objeto[encabezado.trim()] = valores[index]?.trim();
+        });
+
+        return objeto;
+    });
 }
