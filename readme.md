@@ -6,14 +6,15 @@ Aplicación web orientada a una vista simple de productos ofrecidos por una tien
 - CSS
 - JS
 - JSON (fuente de datos para alimentar vista)
+- Google Sheets
 - GIT/Github
 - Deploy con GitHub Pages
 
 ## Flujo de aplicación
-- Se cargan datos desde archivo JSON
+- Se cargan datos desde JSON
 - Datos son almacenados en memoria
 - Se renderizan en el DOM
-- Son agrupados por categorías (en desarrollo)
+- Son agrupados por categorías
 
 ## Historial de cambios
 
@@ -21,3 +22,6 @@ Aplicación web orientada a una vista simple de productos ofrecidos por una tien
 
 - Catalogo de prueba con pocos items de muestra 
 - Carga de datos mediante JSON
+
+### v1.1
+- Carga de datos desde Google Sheets con acceso publico (lector)
