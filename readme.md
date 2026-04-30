@@ -25,3 +25,8 @@ Aplicación web orientada a una vista simple de productos ofrecidos por una tien
 
 ### v1.1
 - Carga de datos desde Google Sheets con acceso publico (lector)
+
+### v1.2
+- Incorporación de Bootstrap 
+- Tarjetas de productos en estilo card de Bootstrap
+- Incorporación de modal con imagen ampliada de producto
