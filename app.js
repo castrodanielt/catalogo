@@ -38,21 +38,43 @@ function renderProductosPorCategoria(productos){
         contenedor.classList.add("contenedor-categoria");
 
         productosAgrupados[categoria].forEach(producto=>{
+            
             const card = document.createElement("div");
-            card.classList.add("producto");
+            card.classList.add("card");
 
             const img = document.createElement("img");
             img.src = producto.imagen;
+            img.classList.add("card-img-top");
 
-            const descripcion = document.createElement("p");
+            const cardCuerpo = document.createElement("div");
+            cardCuerpo.classList.add("card-body");
+
+            const descripcion = document.createElement("h5");
             descripcion.textContent = producto.descripcion;
+            descripcion.classList.add("card-title");
 
             const marca = document.createElement("p");
             marca.textContent = producto.marca;
 
+            const btnCard = document.createElement("button");
+            btnCard.classList.add("btn","btn-primary");
+            btnCard.textContent = "Detalle";
+
+            btnCard.addEventListener("click", ()=>{
+                document.getElementById("modalTitulo").textContent = producto.descripcion;
+                document.getElementById("modalImagen").src = producto.imagen;
+
+                const modal = new bootstrap.Modal(document.getElementById("modalCard"));
+                modal.show();
+            });
+            
             card.appendChild(img);
-            card.appendChild(descripcion);
-            card.appendChild(marca);
+
+            cardCuerpo.appendChild(descripcion);
+            cardCuerpo.appendChild(marca);
+            cardCuerpo.appendChild(btnCard);
+
+            card.appendChild(cardCuerpo);
 
             contenedor.appendChild(card);
         });
